@@ -1,0 +1,7 @@
+FROM alpine:edge
+MAINTAINER Tux Tong <huntthetux@gmail.com>
+
+# ENV BUILD_PKG gcc g++ python
+
+RUN apk --update add $BUILD_PKG libgcc libstdc++ && \
+    rm /var/cache/apk/*

@@ -1,0 +1,26 @@
+FROM centos
+MAINTAINER Tux Tong <huntthetux@gmail.com>
+
+ENV NODE_VERSION v4.1.1
+
+RUN yum -q -y update && \
+    yum -q -y install wget gcc gcc-c++ make && \
+    cd /tmp && \
+    mkdir /tmp/src && \
+    cd /tmp/src && \
+    wget -qO- http://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.xz | \
+    tar xJ && \
+    cd node-v${NODE_VERSION} && \
+    ./configure && make && make install && \
+    cd / && rm -rf /tmp/src && \
+    npm install -g npm && \
+    printf "\n# Nodejs\nexport PATH=$PATH:node_modules/.bin" >> /root/.bashrc && \
+    rm -rf /var/cache/yum && rm -rf /usr/lib/locale && rm -rf /usr/lib/gcc && \
+    rm -rf /usr/share/locale
+
+ADD . /opt/app
+WORKDIR /opt/app
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
