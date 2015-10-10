@@ -1,0 +1,10 @@
+FROM ttux/alpine-lib-ready
+MAINTAINER Tux Tong <huntthetux@gmail.com>
+
+# COPY build-npm.sh /tmp/
+
+RUN mkdir -p /opt/app/node_modules
+
+VOLUME /opt/app/node_modules
+
+ENTRYPOINT /tmp/build-npm.sh
