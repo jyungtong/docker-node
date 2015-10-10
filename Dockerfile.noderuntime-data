@@ -1,7 +1,7 @@
 FROM busybox
 MAINTAINER Tux Tong <huntthetux@gmail.com>
 
-ENV NODE_VERSION v4.1.1
+ENV NODE_VERSION v4.1.2
 ENV NODE_PATH /opt/runtime/node-${NODE_VERSION}
 
 # Simple data only container for storing nodejs binary
