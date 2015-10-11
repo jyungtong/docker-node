@@ -1,0 +1,27 @@
+noderuntime-data-container:
+  build: .
+  dockerfile: Dockerfile.noderuntime-data
+  volumes:
+    - ./node-runtime:/opt/runtime
+noderuntime-builder:
+  build: .
+  dockerfile: Dockerfile.nodebuilder
+  command: /tmp/compile-node.sh
+  volumes_from:
+    - noderuntime-data-container
+nodenpm:
+  build: .
+  dockerfile: Dockerfile.nodenpm
+  command: /tmp/build-npm.sh
+  volumes:
+    - ./nodeapp:/opt/app
+    - ./node-runtime:/opt/runtime:ro
+nodeapp:
+  build: .
+  dockerfile: Dockerfile.nodeapp
+  volumes:
+    - ./nodeapp:/opt/app
+    - ./node-runtime:/opt/runtime:ro
+  ports:
+    - "3000:3000"
+  command: npm start
