@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export NODE_VERSION=v4.1.2
+export NODE_VERSION=v4.2.1
 export NODE_PATH=/opt/runtime/node-${NODE_VERSION}
 
 apk add --update curl make gcc g++ python linux-headers paxctl && \
