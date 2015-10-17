@@ -1,7 +1,6 @@
 noderuntime-builder:
   build: .
   dockerfile: Dockerfile.nodebuilder
-  command: /tmp/compile-node.sh
   volumes:
     - ./node-runtime:/opt/runtime
 nodenpm:

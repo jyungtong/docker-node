@@ -6,5 +6,3 @@ MAINTAINER Tux Tong <huntthetux@gmail.com>
 RUN mkdir -p /opt/app/node_modules
 
 VOLUME /opt/app/node_modules
-
-ENTRYPOINT /tmp/build-npm.sh
