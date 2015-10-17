@@ -1,4 +1,4 @@
-FROM ttux/alpine-lib-ready
+FROM alpine:edge
 
 # ENV NODE_VERSION v4.1.1
 # ENV NODE_PATH /opt/runtime/node-${NODE_VERSION}

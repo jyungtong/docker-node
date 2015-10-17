@@ -3,7 +3,7 @@
 export NODE_VERSION=v4.2.1
 export NODE_PATH=/opt/runtime/node-${NODE_VERSION}
 
-apk add --update curl make gcc g++ python linux-headers paxctl && \
+apk add --update curl make gcc g++ python linux-headers paxctl libgcc libstdc++ && \
 cd /tmp && mkdir -p ${NODE_PATH} && \
 curl -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.gz | tar -xz && \
 cd node-${NODE_VERSION} && \

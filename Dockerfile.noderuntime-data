@@ -3,6 +3,3 @@ MAINTAINER Tux Tong <huntthetux@gmail.com>
 
 ENV NODE_VERSION v4.1.2
 ENV NODE_PATH /opt/runtime/node-${NODE_VERSION}
-
-# Simple data only container for storing nodejs binary
-VOLUME $NODE_PATH

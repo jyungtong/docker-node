@@ -1,8 +1,3 @@
-noderuntime-data-container:
-  build: .
-  dockerfile: Dockerfile.noderuntime-data
-  volumes:
-    - ./node-runtime:/opt/runtime
 noderuntime-builder:
   build: .
   dockerfile: Dockerfile.nodebuilder
