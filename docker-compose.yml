@@ -2,8 +2,8 @@ noderuntime-builder:
   build: .
   dockerfile: Dockerfile.nodebuilder
   command: /tmp/compile-node.sh
-  volumes_from:
-    - noderuntime-data-container
+  volumes:
+    - ./node-runtime:/opt/runtime
 nodenpm:
   build: .
   dockerfile: Dockerfile.nodenpm
