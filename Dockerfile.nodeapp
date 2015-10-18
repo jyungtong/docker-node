@@ -5,4 +5,7 @@ ENV NODE_VERSION v4.2.1
 ENV NODE_PATH /opt/runtime/node-${NODE_VERSION}
 ENV PATH "$NODE_PATH/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+RUN apk --update add libgcc libstdc++ && \
+    rm -rf /var/cache/apk/*
+
 EXPOSE 3000

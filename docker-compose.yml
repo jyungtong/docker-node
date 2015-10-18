@@ -9,14 +9,17 @@ nodenpm-builder:
   build: .
   dockerfile: Dockerfile.nodenpm
   volumes:
-    - ./nodeapp:/opt/app
+    - ./nodeapp/YOURNODEAPP:/opt/app
     - ./node-runtime:/opt/runtime:ro
-nodeapp:
+  entrypoint:
+    - /tmp/build-npm.sh
+YOURNODEAPP:
   build: .
   dockerfile: Dockerfile.nodeapp
   working_dir: /opt/app
+  command: npm start
   volumes:
-    - ./nodeapp:/opt/app
+    - ./nodeapp/YOURNODEAPP:/opt/app:ro
     - ./node-runtime:/opt/runtime:ro
   ports:
-    - "3000:3000"
+    - "127.0.0.1:3000:3000"
