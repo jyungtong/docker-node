@@ -1,13 +1,8 @@
-FROM ttux/alpine-lib-ready
+FROM alpine:edge
 MAINTAINER Tux Tong <huntthetux@gmail.com>
 
 ENV NODE_VERSION v4.2.1
 ENV NODE_PATH /opt/runtime/node-${NODE_VERSION}
 ENV PATH "$NODE_PATH/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-# Directly link to current dir via `pwd`:/opt/app/src:ro (READ ONLY)
-WORKDIR /opt/app/src/
-
 EXPOSE 3000
-
-CMD npm start

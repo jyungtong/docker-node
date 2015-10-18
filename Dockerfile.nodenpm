@@ -1,8 +1,6 @@
-FROM ttux/alpine-lib-ready
+FROM alpine:edge
 MAINTAINER Tux Tong <huntthetux@gmail.com>
 
-# COPY build-npm.sh /tmp/
+COPY build-npm.sh /tmp/
 
-RUN mkdir -p /opt/app/node_modules
-
-VOLUME /opt/app/node_modules
+RUN chmod +x /tmp/build-npm.sh && /tmp/build-npm.sh

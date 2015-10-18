@@ -10,4 +10,4 @@ FROM alpine:edge
 
 COPY compile-node.sh /tmp/
 
-RUN chmod +x /tmp/compile-node.sh && /tmp/compile-node.sh
+#RUN chmod +x /tmp/compile-node.sh
