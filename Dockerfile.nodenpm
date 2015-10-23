@@ -3,4 +3,4 @@ MAINTAINER Tux Tong <huntthetux@gmail.com>
 
 COPY build-npm.sh /tmp/
 
-RUN chmod +x /tmp/build-npm.sh
+RUN chmod +x /tmp/build-npm.sh && /tmp/build-npm.sh

@@ -8,6 +8,6 @@ FROM alpine:edge
 # ENV CONFIG_FLAGS="--fully-static --without-npm" RM_DIRS=${NODE_PATH}/include
 # ENV DEL_PKGS="libgcc libstdc++"
 
-COPY compile-node.sh /tmp/
+COPY build-node.sh /tmp/
 
-#RUN chmod +x /tmp/compile-node.sh
+RUN chmod +x /tmp/build-node.sh && /tmp/build-node.sh

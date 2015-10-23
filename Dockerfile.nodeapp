@@ -2,10 +2,10 @@ FROM alpine:edge
 MAINTAINER Tux Tong <huntthetux@gmail.com>
 
 ENV NODE_VERSION v4.2.1
-ENV NODE_PATH /opt/runtime/node-${NODE_VERSION}
-ENV PATH "$NODE_PATH/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ENV NODE_PATH=/opt/runtime/node-${NODE_VERSION}
+ENV PATH=${NODE_PATH}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PACKAGES="gcc g++ python make libgcc libstdc++ krb5-dev"
 
-RUN apk --update add libgcc libstdc++ && \
-    rm -rf /var/cache/apk/*
+COPY build-app.sh /tmp/
 
-EXPOSE 3000
+RUN chmod +x /tmp/build-app.sh && /tmp/build-app.sh

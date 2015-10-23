@@ -1,25 +1,59 @@
-noderuntime-builder:
+node-builder:
   build: .
   dockerfile: Dockerfile.nodebuilder
-  volumes:
-    - ./node-runtime:/opt/runtime
-  working_dir: /tmp
-  entrypoint: /tmp/compile-node.sh
+
 nodenpm-builder:
   build: .
   dockerfile: Dockerfile.nodenpm
+  env_file:
+    - ./common.env
   volumes:
-    - ./nodeapp/YOURNODEAPP:/opt/app
+    - ./nodeapp/rubicle_jwt_auth_server:/opt/app
     - ./node-runtime:/opt/runtime:ro
-  entrypoint:
-    - /tmp/build-npm.sh
-YOURNODEAPP:
+  working_dir: /opt/app
+  command: npm install
+
+rubicles.com-demo.api:
   build: .
   dockerfile: Dockerfile.nodeapp
   working_dir: /opt/app
   command: npm start
   volumes:
-    - ./nodeapp/YOURNODEAPP:/opt/app:ro
+    - ./nodeapp/rubicles.com-demo.api:/opt/app:ro
     - ./node-runtime:/opt/runtime:ro
   ports:
     - "127.0.0.1:3000:3000"
+  external_links:
+    - dev_mongodb:mongodb
+dev_blogapp:
+  build: .
+  dockerfile: Dockerfile.nodeapp
+  working_dir: /opt/app
+  command: node index.js
+  environment:
+    ENV: DEV
+    PORT: 3301
+  volumes:
+    - ./nodeapp/rubicle_blog_app:/opt/app
+    - ./node-runtime:/opt/runtime:ro
+  ports:
+    - "127.0.0.1:3301:3301"
+  external_links:
+    - dockermongo_dev_db_1:mongodb
+dev_authapp:
+  build: .
+  dockerfile: Dockerfile.nodeapp
+  working_dir: /opt/app
+  command: node index.js
+  env_file:
+    - ./common.env
+  environment:
+    ENV: DEV
+    PORT: 3302
+  volumes:
+    - ./nodeapp/rubicle_jwt_auth_server:/opt/app
+    - ./node-runtime:/opt/runtime:ro
+  ports:
+    - "127.0.0.1:3301:3301"
+  external_links:
+    - dockermongo_dev_db_1:mongodb
