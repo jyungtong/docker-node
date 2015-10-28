@@ -2,49 +2,52 @@ node-builder:
   build: .
   dockerfile: Dockerfile.nodebuilder
 
-nodenpm-builder:
+npm-builder:
   build: .
   dockerfile: Dockerfile.nodenpm
   env_file:
     - ./common.env
   volumes:
-    - ./nodeapp/rubicle_jwt_auth_server:/opt/app
-    - ./node-runtime:/opt/runtime:ro
+    - ./nodeapp/metatags:/opt/app
   working_dir: /opt/app
   command: npm install
 
 rubicles.com-demo.api:
   build: .
-  dockerfile: Dockerfile.nodeapp
+  dockerfile: Dockerfile.noderunner
   working_dir: /opt/app
   command: npm start
   volumes:
     - ./nodeapp/rubicles.com-demo.api:/opt/app:ro
-    - ./node-runtime:/opt/runtime:ro
   ports:
     - "127.0.0.1:3000:3000"
   external_links:
     - dev_mongodb:mongodb
+
 dev_blogapp:
   build: .
-  dockerfile: Dockerfile.nodeapp
+  dockerfile: Dockerfile.noderunner
   working_dir: /opt/app
-  command: node index.js
+  external_links:
+    - dockermongo_dev_db_1:mongodb
+  env_file:
+    - ./common.env
   environment:
     ENV: DEV
     PORT: 3301
   volumes:
     - ./nodeapp/rubicle_blog_app:/opt/app
-    - ./node-runtime:/opt/runtime:ro
+    - ./data/dev/static_content:/opt/app/static_content
   ports:
     - "127.0.0.1:3301:3301"
-  external_links:
-    - dockermongo_dev_db_1:mongodb
+  command: node index.js
+
 dev_authapp:
   build: .
-  dockerfile: Dockerfile.nodeapp
+  dockerfile: Dockerfile.noderunner
   working_dir: /opt/app
-  command: node index.js
+  external_links:
+    - dockermongo_dev_db_1:mongodb
   env_file:
     - ./common.env
   environment:
@@ -52,8 +55,36 @@ dev_authapp:
     PORT: 3302
   volumes:
     - ./nodeapp/rubicle_jwt_auth_server:/opt/app
-    - ./node-runtime:/opt/runtime:ro
   ports:
-    - "127.0.0.1:3301:3301"
-  external_links:
-    - dockermongo_dev_db_1:mongodb
+    - "127.0.0.1:3302:3302"
+  command: node index.js
+
+dev_metatags:
+  build: .
+  dockerfile: Dockerfile.noderunner
+  working_dir: /opt/app
+  environment:
+    PORT: 3303
+  env_file:
+    - ./common.env
+  volumes:
+    - ./nodeapp/metatags:/opt/app
+  ports:
+    - "127.0.0.1:3303:3303"
+  command: npm start
+
+dev_imageuploader:
+  build: .
+  dockerfile: Dockerfile.noderunner
+  working_dir: /opt/app
+  environment:
+    PORT: 3304
+  env_file:
+    - ./common.env
+  volumes:
+    - ./nodeapp/rubicle_image_uploader:/opt/app
+  ports:
+    - "127.0.0.1:3304:3304"
+  command: npm start
+
+

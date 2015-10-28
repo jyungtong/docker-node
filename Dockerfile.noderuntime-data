@@ -1,5 +1,0 @@
-FROM busybox
-MAINTAINER Tux Tong <huntthetux@gmail.com>
-
-ENV NODE_VERSION v4.2.1
-ENV NODE_PATH /opt/runtime/node-${NODE_VERSION}

@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM dockernode_node-builder
 MAINTAINER Tux Tong <huntthetux@gmail.com>
 
 COPY build-npm.sh /tmp/

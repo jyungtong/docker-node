@@ -6,5 +6,4 @@ export PATH=${NODE_PATH}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 export PACKAGES="gcc g++ python make libgcc libstdc++ krb5-dev"
 
 apk --update add ${PACKAGES} && \
-#apk del ${PACKAGES} && \
 rm -rf /var/cache/apk/*
