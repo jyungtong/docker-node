@@ -1,5 +1,0 @@
-FROM dockernode_node-builder
-
-COPY node-runner.sh /tmp/
-
-RUN chmod +x /tmp/node-runner.sh && /tmp/node-runner.sh

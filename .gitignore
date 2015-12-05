@@ -2,3 +2,4 @@ nodeapp/*
 !nodeapp/.gitkeep
 node-runtime/*
 !node-runtime/.gitkeep
+*.tar
