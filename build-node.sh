@@ -1,17 +1,17 @@
 #!/bin/sh
 
-export ALPINE_VER=3.2
-export NODE_VERSION=v4.2.2
+export ALPINE_VER=v3.3
+export NODE_VERSION=v5.4.1
 export NODE_PATH=/usr/local
 
-# echo "http://repos.lax-noc.com/alpine/${ALPINE_VER}/main" > /etc/apk/repositories && \
+#echo "http://alpine.gliderlabs.com/alpine/${ALPINE_VER}/main" > /etc/apk/repositories && \
 apk update && \
-apk add curl make gcc g++ python linux-headers paxctl libgcc libstdc++ imagemagick && \
+apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libstdc++ imagemagick && \
 cd /tmp && mkdir -p ${NODE_PATH} && \
 curl -SLO https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.gz && \
 tar xzf node-${NODE_VERSION}.tar.gz && \
 cd node-${NODE_VERSION} && \
-./configure --prefix=${NODE_PATH} && \
+./configure --prefix=${NODE_PATH} --without-snapshot && \
 make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
 make install && \
 paxctl -cm ${NODE_PATH}/bin/node && \
