@@ -1,6 +1,6 @@
 Version
 ======
-- 5.4.1, latest [(Dockerfile)](https://github.com/tuxtong/tuxtong-node/blob/ee41826017f9c85a78de2b35c7d427d9724353ee/Dockerfile)
+- 5.4.1, latest [(Dockerfile)](https://github.com/tuxtong/docker-node/blob/master/Dockerfile)
 
 How To Use
 =========
