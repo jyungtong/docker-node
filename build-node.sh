@@ -1,7 +1,7 @@
 #!/bin/sh
 
-export ALPINE_VER=v3.3
-export NODE_VERSION=v5.5.0
+# export ALPINE_VER=v3.3
+export NODE_VERSION=v6.2.2
 export NODE_PATH=/usr/local
 
 #echo "http://alpine.gliderlabs.com/alpine/${ALPINE_VER}/main" > /etc/apk/repositories && \
@@ -19,7 +19,7 @@ paxctl -cm ${NODE_PATH}/bin/node && \
 cd / && \
 if [ -x ${NODE_PATH}/bin/npm ]; then \
   ${NODE_PATH}/bin/npm install -g npm && \
-  ${NODE_PATH}/bin/npm install -g foreman && \
+  # ${NODE_PATH}/bin/npm install -g foreman && \
   find ${NODE_PATH}/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
 fi && \
 apk del make gcc g++ linux-headers python paxctl && \

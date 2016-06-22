@@ -2,8 +2,8 @@
 
 NPM='npm start'
 
-addgroup -S docker 
-adduser -s /bin/sh -G docker -D -S docker 
+# addgroup -S docker 
+# adduser -s /bin/sh -G docker -D -S docker 
 cd /opt/app 
 
 if [ "${1:0:1}" = '-' ]; then
